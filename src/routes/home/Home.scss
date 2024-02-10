@@ -1,3 +1,89 @@
 .home{
     display: flex;
 }
+.fonts {
+    background-color: #202124;
+    width: 100%;
+    padding: 40px;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.logo {
+    width: 200px;
+}
+
+.logo-form {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    background-color: #2d3032;
+    width: 850px;
+    border-radius: 50px;
+    padding: 10px;
+
+    input {
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+        border: none;
+        color: #fff;
+        outline: none;
+        text-indent: 10px;
+        font-size: 18px;
+    }
+
+    button,
+    select {
+        border: none;
+        background-color: transparent;
+        font-size: 18px;
+        outline: none;
+        color: #fff;
+    }
+
+    select {
+        border-left: 1px solid grey;
+        padding-left: 10px;
+        option{
+            background-color: #2d3032;
+        }
+    }
+}
+
+.cart {
+    border: none;
+    background-color: transparent;
+    font-size: 18px;
+    outline: none;
+    color: #fff;
+}
+
+.info{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #9AA0A6;
+    margin-top: 30px;
+}
+.fonts__wrapper{
+    height: 100vh;
+    overflow: auto;
+}
+.font-link{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 1px solid #9AA0A6;
+    padding: 20px 30px 40px 30px;
+    &:hover{
+        background-color: rgba(128, 128, 128, 0.205);
+        border-radius: 20px;
+        border-bottom: 1px solid transparent;
+    }
+}
