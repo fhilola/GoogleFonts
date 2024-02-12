@@ -74,13 +74,16 @@
 .fonts__wrapper{
     height: 100vh;
     overflow: auto;
+        &::-webkit-scrollbar{
+        display: none;
+    }
 }
 .font-link{
     display: flex;
     flex-direction: column;
     justify-content: center;
     border-bottom: 1px solid #9AA0A6;
-    padding: 20px 30px 40px 30px;
+    padding: 40px 30px 40px 30px;
     &:hover{
         background-color: rgba(128, 128, 128, 0.205);
         border-radius: 20px;
