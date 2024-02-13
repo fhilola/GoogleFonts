@@ -69,7 +69,7 @@ const Home = () => {
           <MenuItem value={280}>280</MenuItem>
         </Select>
       </FormControl>
-          <Slider onChange={(e)=>setSize(e.target.value)} defaultValue={size} aria-label="Default" valueLabelDisplay="auto" />
+          <Slider max={300} min={8} onChange={(e)=>setSize(e.target.value)} defaultValue={size} aria-label="Default" valueLabelDisplay="auto" />
         </Box>
 
         <div className="filters">
@@ -112,19 +112,19 @@ const Home = () => {
         </nav>
         <FilterButton isOpen={isOpen} setIsOpen={setIsOpen} appearence='filter'><IoClose />Filters</FilterButton>
         <div className="info">
-          <span>{searchData?.data?.items?.length > 0 ? searchData?.data?.items?.length :  data?.items.length } of 1603 families</span>
+          <span>{searchData?.data?.items?.length > 0 ? searchData?.data?.items?.length :  data?.items?.length } of 1603 families</span>
           <span title='Search results are based on font and font designer names which most closely match your query, and are ranked using the following factors: (1) web usage of the font family; (2) trend in web usage of the font family; (3) the number of styles in the font family; (4) the date the font family was added to Google Fonts; and/or (5) how applicable the font family is to the dominant language(s) in your country (based on your location and settings). The relative weight given to each factor is determined by the sorting method you choose—for example, the date the font family was added to Google Fonts will play a bigger role if you choose to sort by "Newest".'>About these results</span>
         </div>
         <div className="fonts__wrapper">
           {
             searchData?.data?.items?.length > 0 ?
             searchData?.data?.items?.map((font: any, index: number) => (
-              <Link to={'/'} key={index} className='font-link'>
+              <Link to={`single-font/${font.family}`} key={index} className='font-link'>
                 <Font family_name={font.family} styles={font.variants.length} font={font.category} value={value} size={size}/>
               </Link>
             )):
             data?.items.map((font: any, index: number) => (
-              <Link to={'/'} key={index} className='font-link'>
+              <Link to={`single-font/${font.family}`} key={index} className='font-link'>
                 <Font family_name={font.family} styles={font.variants.length} font={font.category} value={value} size={size}/>
               </Link>
             ))
