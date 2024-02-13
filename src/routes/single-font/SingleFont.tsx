@@ -13,6 +13,7 @@ import Select from '@mui/material/Select';
 import { Slider } from '@mui/material'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import { importGoogleFont } from '../../helpers/font-validation/FontValidation'
 
 const SingleFont = () => {
   const [value, setValue] = useState<string>('')
@@ -33,6 +34,10 @@ const SingleFont = () => {
   const getFont = useRef()
   console.log(getFont.current);
   
+
+  data?.items?.map((item: any) => {
+    importGoogleFont(item.family)
+  })
 
   return (
     <div className='single-fonts'>
@@ -68,11 +73,13 @@ const SingleFont = () => {
         </section>
         <div className="font">
           {
-            data?.items?.slice(200, 300).map((item: any) =>
+            data?.items?.map((item: any) =>
               <div className='single-font-info'>
                 <h1 className='single-font-title'>{item.family}</h1>
                 <span className='author'>Designed by <Link to='/'> Kimdir</Link> </span>
-                <h2 className='font-showcase'>Whereas disregard and contempt for human rights have resulted</h2>
+                <h2 className='font-showcase' style={{
+                  fontFamily: data?.items[0].family
+                }}>Whereas disregard and contempt for human rights have resulted</h2>
                 <div className="selection">
                   <label className='selection-label' htmlFor="">Select preview text:
                     <select name="" id="">
@@ -165,9 +172,9 @@ const SingleFont = () => {
                 <span>{variant.includes('100') ? ` Thin` : variant.includes('300') ? ` light` : variant.includes('400') ? ` Regular` : variant.includes('500') ? ` Medium` : variant.includes('600') ? ` SemiBold` : variant.includes('700') ? ` Bold` : variant.includes('800') ? ` ExtraBold` : variant.includes('900') ? ` Black` : variant.includes('regular') ? '' : variant.includes('italic') ? '' : variant} {variant} </span>
                 {
                   variant.includes('italic') ? 
-                  <i style={{fontWeight: variant.includes('italic') && `${variant.slice(3, 8)}`, fontSize: `${size}px`}}>{value && value?.length > 0 ? value : 'Everyone has the right to freedom of thoughts, consistence and ...'}</i>
+                  <i style={{fontWeight: variant.includes('italic') && `${variant.slice(3, 8)}`, fontSize: `${size}px`, fontFamily: data?.items[0].family }}>{value && value?.length > 0 ? value : 'Everyone has the right to freedom of thoughts, consistence and ...'}</i>
                   :
-                  <h3 style={{fontWeight: `${variant}`, fontSize: `${size}px`}}>{value && value?.length > 0 ? value : 'Everyone has the right to freedom of thoughts, consistence and ...'}</h3>
+                  <h3 style={{fontWeight: `${variant}`, fontSize: `${size}px`, fontFamily: data?.items[0].family}} >{value && value?.length > 0 ? value : 'Everyone has the right to freedom of thoughts, consistence and ...'}</h3>
                 }
               </div>
             )

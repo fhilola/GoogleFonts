@@ -27,7 +27,6 @@ const FilterButton = ({isOpen, setIsOpen, children, appearence}: {isOpen: boolea
 
 const Font = ({ family_name, styles, font, value, size }: FontProps) => {
 
-  // console.log(family_name);
   
     return (
         <>

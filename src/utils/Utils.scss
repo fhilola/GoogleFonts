@@ -38,5 +38,8 @@
 }
 .font-text{
     font-size: 30px;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 1000px;
 }
 
