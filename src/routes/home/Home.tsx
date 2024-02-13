@@ -16,6 +16,7 @@ import Select from '@mui/material/Select';
 import { AiOutlineGlobal } from "react-icons/ai";
 import { RxLetterSpacing } from "react-icons/rx";
 import Box from '@mui/material/Box';
+import { importGoogleFont } from '../../helpers/font-validation/FontValidation';
 
 const Home = () => {
   const [sorting, setSorting] = useState<string>('popularity')
@@ -25,6 +26,12 @@ const Home = () => {
   const { data } = useFetch(`&sort=${sorting}`)
   const searchData = useFetch(search?.length > 0 && `&family=${search}`)
   const [value, setValue] = useState<string>('')
+  
+  
+  data?.items?.slice(200, 300).map((item: any) => {
+    importGoogleFont(item.family)
+  })
+  
 
 
   return (
@@ -32,11 +39,14 @@ const Home = () => {
       <Sidebar />
       <aside className={isOpen ? 'opening-sidebar ' : 'opening-sidebar open'}>
         <div className="reset-wrapper">
-          <span className='reset'><GrPowerReset />Reset All</span>
+          <span onClick={()=>{
+            setSize(36)
+            setValue('')
+          }} className='reset' style={size === 36 ? {cursor: 'not-allowed'} : {cursor: 'pointer', backgrounColor: '#4b90ff2b', color: '#4b90ff'}}><GrPowerReset />Reset All</span>
           <FilterButton isOpen={isOpen} setIsOpen={setIsOpen} appearence=''><IoClose /></FilterButton>
         </div>
         <label htmlFor="preview" className='preview-label'>Preview
-          <textarea placeholder='Type Something' className='preview' cols={20} rows={20} id="preview" onChange={(e) => { setValue(e.target.value); }}></textarea>
+          <textarea placeholder='Type Something' className='preview' cols={20} rows={20} id="preview" onChange={(e) => { setValue(e.target.value); }}>{value}</textarea>
         </label>
         <Box style={
           {
@@ -114,7 +124,7 @@ const Home = () => {
         </nav>
         <FilterButton isOpen={isOpen} setIsOpen={setIsOpen} appearence='filter'><IoClose />Filters</FilterButton>
         <div className="info">
-          <span>{searchData?.data?.items?.length > 0 ? searchData?.data?.items?.length :  data?.items?.length } of 1603 families</span>
+          <span>{searchData?.data?.items?.length > 0 ? searchData?.data?.items?.length :  data?.items?.slice(200, 300).length } of 1603 families</span>
           <span title='Search results are based on font and font designer names which most closely match your query, and are ranked using the following factors: (1) web usage of the font family; (2) trend in web usage of the font family; (3) the number of styles in the font family; (4) the date the font family was added to Google Fonts; and/or (5) how applicable the font family is to the dominant language(s) in your country (based on your location and settings). The relative weight given to each factor is determined by the sorting method you choose—for example, the date the font family was added to Google Fonts will play a bigger role if you choose to sort by "Newest".'>About these results</span>
         </div>
         <div className="fonts__wrapper">
@@ -129,7 +139,7 @@ const Home = () => {
                 <Font family_name={font.family} styles={font.variants.length} font={font.category} value={value} size={size}/>
               </Link>
             )):
-            data?.items.map((font: any, index: number) => (
+            data?.items.slice(200, 300).map((font: any, index: number) => (
               <Link to={`single-font/${font.family}`} key={index} className='font-link'>
                 <Font family_name={font.family} styles={font.variants.length} font={font.category} value={value} size={size}/>
               </Link>

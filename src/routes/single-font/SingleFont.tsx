@@ -68,7 +68,7 @@ const SingleFont = () => {
         </section>
         <div className="font">
           {
-            data?.items?.map((item: any) =>
+            data?.items?.slice(200, 300).map((item: any) =>
               <div className='single-font-info'>
                 <h1 className='single-font-title'>{item.family}</h1>
                 <span className='author'>Designed by <Link to='/'> Kimdir</Link> </span>
