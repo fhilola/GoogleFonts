@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { MutableRefObject, useEffect, useRef, useState } from 'react'
 import './SingleFonts.scss'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import useFetch from '../../helpers/hooks/useFetch'
@@ -30,6 +30,10 @@ const SingleFont = () => {
     }
   },[search])
 
+  const getFont = useRef()
+  console.log(getFont.current);
+  
+
   return (
     <div className='single-fonts'>
       <Sidebar />
@@ -56,7 +60,10 @@ const SingleFont = () => {
             <button>Glyphs</button>
             <button>About & license</button>
           </div>
-          <button className="download">Get font</button>
+          <button ref={getFont} className="download" onClick={()=>{
+            localStorage.setItem('font', JSON.stringify(data.items))
+            getFont.current.innerHTML = 'Remove font Family'
+          }}>Get font</button>
         </div>
         </section>
         <div className="font">
