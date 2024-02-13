@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './SingleFonts.scss'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import useFetch from '../../helpers/hooks/useFetch'
 import Sidebar from '../../layout/sidebar/Sidebar'
 import { FiSearch } from 'react-icons/fi'
@@ -22,6 +22,13 @@ const SingleFont = () => {
   const { data } = useFetch(`&family=${family}`)
   console.log(data);
   const [size, setSize] = useState<number>(36)
+  const navigate = useNavigate()
+
+  useEffect(()=>{
+    if(search.length > 0){
+      navigate('/')
+    }
+  },[search])
 
   return (
     <div className='single-fonts'>
@@ -29,10 +36,10 @@ const SingleFont = () => {
       <div className="fonts">
         <section className="sticky">
           <nav className='navbar'>
-          <img className='logo' src={Logo} alt="" />
+          <Link to='/'><img className='logo' src={Logo} alt="" /></Link>
           <form className='logo-form'>
             <button><FiSearch /></button>
-            <input type="text" placeholder='Search Fonts' onChange={(e) => setSearch(e.target.value)} />
+            <input type="text" placeholder='Search Fonts' onChange={(e)=>setSearch(e.target.value)} />
             <select onChange={(e) => setSorting(e.target.value)}>
               <option value="trending">Trending</option>
               <option value="popularity">Most Popular</option>

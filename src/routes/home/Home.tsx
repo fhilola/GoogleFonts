@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Home.scss'
 import Sidebar from '../../layout/sidebar/Sidebar'
 import Logo from '../../assets/logo.png'
@@ -7,8 +7,7 @@ import { FiSearch } from "react-icons/fi";
 import { IoClose } from 'react-icons/io5';
 import { FilterButton, Font } from '../../utils/Utils'
 import useFetch from '../../helpers/hooks/useFetch'
-import { Link } from 'react-router-dom'
-import Box from '@mui/material/Box';
+import { Link, useNavigate } from 'react-router-dom'
 import Slider from '@mui/material/Slider';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -16,6 +15,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { AiOutlineGlobal } from "react-icons/ai";
 import { RxLetterSpacing } from "react-icons/rx";
+import Box from '@mui/material/Box';
 
 const Home = () => {
   const [sorting, setSorting] = useState<string>('popularity')
@@ -25,6 +25,8 @@ const Home = () => {
   const { data } = useFetch(`&sort=${sorting}`)
   const searchData = useFetch(search?.length > 0 && `&family=${search}`)
   const [value, setValue] = useState<string>('')
+
+
   return (
     <section className='home'>
       <Sidebar />
@@ -108,7 +110,7 @@ const Home = () => {
               <option value="alpha">Name</option>
             </select>
           </form>
-          <button className='cart'><GrShop /></button>
+          <Link to='cart' className='cart'><GrShop /></Link>
         </nav>
         <FilterButton isOpen={isOpen} setIsOpen={setIsOpen} appearence='filter'><IoClose />Filters</FilterButton>
         <div className="info">
@@ -117,7 +119,11 @@ const Home = () => {
         </div>
         <div className="fonts__wrapper">
           {
-            searchData?.data?.items?.length > 0 ?
+            searchData?.data?.items?.length === 0 ? 
+            <div>
+              <h1>empty</h1>
+            </div>
+            : searchData?.data?.items?.length > 0 ?
             searchData?.data?.items?.map((font: any, index: number) => (
               <Link to={`single-font/${font.family}`} key={index} className='font-link'>
                 <Font family_name={font.family} styles={font.variants.length} font={font.category} value={value} size={size}/>
