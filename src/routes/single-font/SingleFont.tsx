@@ -15,7 +15,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
 const SingleFont = () => {
-
+  const [value, setValue] = useState<string>('')
   const [sorting, setSorting] = useState<string>('popularity')
   const [search, setSearch] = useState<string>('')
   const { family } = useParams()
@@ -51,7 +51,7 @@ const SingleFont = () => {
               <option value="alpha">Name</option>
             </select>
           </form>
-          <button className='cart'><GrShop /></button>
+          <Link to='/cart' className='cart'><GrShop /></Link>
         </nav>
         <div className="single-fonts-action">
           <div className="action">
@@ -111,11 +111,12 @@ const SingleFont = () => {
               autoComplete="off"
             >
               <TextField 
+              onChange={(e)=>setValue(e.target.value)}
               className='text-field'
               style={{
               color: '#fff'
             }}
-               id="outlined-basic" label="Outlined" variant="outlined" />
+               id="outlined-basic" label="Type here to preview text" variant="outlined" />
             </Box>
             <Box style={
               {
@@ -164,9 +165,9 @@ const SingleFont = () => {
                 <span>{variant.includes('100') ? ` Thin` : variant.includes('300') ? ` light` : variant.includes('400') ? ` Regular` : variant.includes('500') ? ` Medium` : variant.includes('600') ? ` SemiBold` : variant.includes('700') ? ` Bold` : variant.includes('800') ? ` ExtraBold` : variant.includes('900') ? ` Black` : variant.includes('regular') ? '' : variant.includes('italic') ? '' : variant} {variant} </span>
                 {
                   variant.includes('italic') ? 
-                  <i style={{fontWeight: variant.includes('italic') && `${variant.slice(3, 8)}`}}>Whereas recognmghition of the inherent dignity</i>
+                  <i style={{fontWeight: variant.includes('italic') && `${variant.slice(3, 8)}`, fontSize: `${size}px`}}>{value && value?.length > 0 ? value : 'Everyone has the right to freedom of thoughts, consistence and ...'}</i>
                   :
-                  <h3 style={{fontWeight: `${variant}`}}>Whereas recognition of the inherent dignity</h3>
+                  <h3 style={{fontWeight: `${variant}`, fontSize: `${size}px`}}>{value && value?.length > 0 ? value : 'Everyone has the right to freedom of thoughts, consistence and ...'}</h3>
                 }
               </div>
             )

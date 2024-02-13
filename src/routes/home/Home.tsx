@@ -110,7 +110,7 @@ const Home = () => {
               <option value="alpha">Name</option>
             </select>
           </form>
-          <Link to='cart' className='cart'><GrShop /></Link>
+          <Link to='/cart' className='cart'><GrShop /></Link>
         </nav>
         <FilterButton isOpen={isOpen} setIsOpen={setIsOpen} appearence='filter'><IoClose />Filters</FilterButton>
         <div className="info">

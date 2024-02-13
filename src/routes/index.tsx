@@ -10,7 +10,7 @@ const RouteController = () => {
       <Route path='/' element={<Home />}>
       </Route>
         <Route path='single-font/:family' element={<SingleFont />} />
-        <Route path='cart' element={<Cart />} />
+        <Route path='/cart' element={<Cart />} />
     </Routes>
   )
 }
