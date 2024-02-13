@@ -90,3 +90,137 @@
         border-bottom: 1px solid transparent;
     }
 }
+.MuiPaper-root {
+    min-width: 10px !important;
+    background-color: transparent !important;
+}
+.MuiList-root{
+    height: 150px;
+    width: 50px;
+    overflow: auto;
+    background-color: #3c4043;
+    border-radius: 10px;
+
+    &::-webkit-scrollbar{
+        width: 5px;
+    }
+    &::-webkit-scrollbar-thumb{
+        background-color: #bdbdbd;
+        border-radius: 3px;
+        height: 10px;
+    }
+}
+.select-title{
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    font-weight: 400;
+}
+.opening-sidebar {
+    width: 300px;
+    background-color: #202124ef;
+    color: #fff;
+    padding: 50px;
+}
+
+.open {
+    transition: 3s;
+    transform: translateX(-300px);
+    display: none;
+    z-index: -1;
+}
+
+.reset-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0 20px;
+
+    .close {
+        font-size: 30px;
+
+    }
+}
+
+.reset {
+    display: flex;
+    align-items: center;
+    gap: 0 10px;
+    color: rgba(128, 128, 128, 0.719);
+}
+
+.preview-label {
+    display: flex;
+    flex-direction: column;
+    gap: 20px 0;
+    margin: 20px 0;
+
+    .preview {
+        width: 220px;
+        height: 140px;
+        background-color: #3c4043;
+        border: none;
+        border-radius: 15px;
+        color: #fff;
+        font-size: 16px;
+        padding: 10px;
+        margin-top: 10px;
+        outline-color: lightblue;
+        resize: none;
+    }
+}
+.filters{
+    margin: 20px 0;
+    padding: 20px 0;
+    border-top: thin solid #504f4f;
+    display: flex;
+    flex-direction: column;
+    gap: 20px 0;
+    h3{
+        font-size: 20px;
+    }
+}
+.country-selector{
+    display: flex;
+    flex-direction: column;
+    gap: 20px 0;
+    margin: 20px 0;
+    span{
+        display: flex;
+        align-items: center;
+        gap: 0 10px;
+        font-size: 20px;
+    }
+    select{
+        background-color: #504f4f;
+        font-size: 18px;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 10px;
+    }
+}
+
+.technology{
+    display: flex;
+    flex-direction: column;
+    gap: 20px 0;
+    margin: 20px 0;
+    span{
+        display: flex;
+        align-items: center;
+        gap: 0 10px;
+        font-size: 20px;
+    }
+    .technology-action{
+        display: flex;
+        align-items: center;
+        gap: 0 10px;
+        button{
+            padding: 5px 10px;
+            border: none;
+            background-color: #504f4f;
+            color: #fff;
+        }
+    }
+}

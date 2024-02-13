@@ -9,7 +9,7 @@ const useFetch: Function = (url: string) => {
         async function fetchData() {
             try {
                 setLoading(true)
-                const response = await fetch(`https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyCGE2aflejm1_kULkePqulz0fQMAV0yxCE`)
+                const response = await fetch(`https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyCGE2aflejm1_kULkePqulz0fQMAV0yxCE${url}`)
                 const data = await response.json()
                 setData(data)
                 
